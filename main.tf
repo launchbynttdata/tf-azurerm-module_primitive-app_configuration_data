@@ -61,4 +61,8 @@ resource "azurerm_app_configuration_feature" "feature" {
       end   = timewindow_filter.value.end
     }
   }
+
+  lifecycle {
+    ignore_changes = [enabled, targeting_filter, timewindow_filter]
+  }
 }

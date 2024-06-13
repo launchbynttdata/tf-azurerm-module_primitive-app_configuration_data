@@ -105,3 +105,40 @@ If `make check` target is successful, developer is good to commit the code to pr
 - runs `conftests`. `conftests` make sure `policy` checks are successful.
 - runs `terratest`. This is integration test suit.
 - runs `opa` tests
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.67 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.107.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_app_configuration_feature.feature](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_configuration_feature) | resource |
+| [azurerm_app_configuration_key.key](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_configuration_key) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_configuration_store_id"></a> [configuration\_store\_id](#input\_configuration\_store\_id) | ID of the App Configuration store | `string` | n/a | yes |
+| <a name="input_keys"></a> [keys](#input\_keys) | map(object({<br>      content\_type        = content type of the configuration key<br>      label               = label (partition) of the app configuration store<br>      value               = value of the configuration key<br>      locked              = whether the key is locked to prevent changes<br>      type                = type of the configuration key, `kv` or `vault` (key vault reference)<br>      vault\_key\_reference = id of the vault secret this key refers to<br>      tags                = custom tags to assign<br>    })) | <pre>map(object({<br>    content_type        = optional(string)<br>    label               = optional(string)<br>    value               = optional(string)<br>    locked              = optional(bool)<br>    type                = optional(string)<br>    vault_key_reference = optional(string)<br>    tags                = optional(map(string))<br>  }))</pre> | n/a | yes |
+| <a name="input_features"></a> [features](#input\_features) | map(object({<br>      name        = name of the feature flag<br>      description = description of the feature<br>      enabled     = status of the feature, defaults to false<br>      label       = label (partition) of the app configuration store<br>      locked      = whether the feature is locked to prevent changes<br><br>      targeting\_filter = optional(object({<br>        default\_rollout\_percentage = default percentage of the user base for which to enable the feature<br>        groups                     = map of groups and their rollout percentages (groups defined in the application logic)<br>        users                      = list of users to target (users defined in the application logic)<br>      }))<br><br>      timewindow\_filter = optional(object({<br>        start = the earliest timestamp the feature is enabled, RFC3339 format<br>        end   = the latest timestamp the feature is enabled, RFC3339 format<br>      }))<br>    })) | <pre>map(object({<br>    name        = string<br>    description = optional(string)<br>    enabled     = optional(bool)<br>    label       = optional(string)<br>    locked      = optional(bool)<br><br>    targeting_filter = optional(object({<br>      default_rollout_percentage = number<br>      groups                     = optional(map(number))<br>      users                      = optional(list(string))<br>    }))<br><br>    timewindow_filter = optional(object({<br>      start = optional(string)<br>      end   = optional(string)<br>    }))<br>  }))</pre> | n/a | yes |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

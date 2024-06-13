@@ -41,6 +41,8 @@ module "app_configuration" {
   location            = var.location
 
   tags = merge(var.tags, { resource_name = module.resource_names["app_configuration"].standard })
+
+  depends_on = [module.resource_group]
 }
 
 module "app_configuration_data" {

@@ -124,7 +124,7 @@ variable "keys" {
     vault_key_reference = optional(string)
     tags                = optional(map(string))
   }))
-  default = null
+  default = {}
 }
 
 variable "features" {
@@ -166,7 +166,7 @@ variable "features" {
       end   = optional(string)
     }))
   }))
-  default = null
+  default = {}
 }
 
 variable "tags" {

@@ -1,18 +1,18 @@
 package testimpl
 
 import (
+	"context"
 	"os"
 	"testing"
-	"context"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/cloud"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
 	"github.com/stretchr/testify/assert"
-	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2"
 )
 
 func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
@@ -39,7 +39,7 @@ func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
 		t.Fatalf("failed to create client: %v", err)
 	}
 
-	t.Run("TestAppConfigurationDataKeys", func(t *testing.T) {
+	t.Run("TestAppConfigurationKeys", func(t *testing.T) {
 		appconfigName := terraform.Output(t, ctx.TerratestTerraformOptions(), "app_configuration_name")
 		resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
 
@@ -47,6 +47,6 @@ func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
 		if err != nil {
 			t.Fatalf("failed to finish the request: %v", err)
 		}
-		assert.NotEqual(t, "Hello, World!", keyValue)
+		assert.Equal(t, "Hello, World!", keyValue)
 	})
 }

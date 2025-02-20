@@ -140,5 +140,9 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_configuration_store_id"></a> [configuration\_store\_id](#output\_configuration\_store\_id) | n/a |
+| <a name="output_app_configuration_keys"></a> [app\_configuration\_keys](#output\_app\_configuration\_keys) | n/a |
+| <a name="output_app_configuration_features"></a> [app\_configuration\_features](#output\_app\_configuration\_features) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -82,7 +82,7 @@ variable "logical_product_service" {
     error_message = "The variable must contain letters, numbers, -, _, and .."
   }
 
-  default = "redis"
+  default = "appcs"
 }
 
 variable "class_env" {

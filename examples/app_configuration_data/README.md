@@ -53,4 +53,5 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_app_configuration_name"></a> [app\_configuration\_name](#output\_app\_configuration\_name) | n/a |
+| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
 <!-- END_TF_DOCS -->

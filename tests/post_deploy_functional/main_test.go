@@ -21,7 +21,8 @@ import (
 )
 
 const (
-	testConfigsExamplesFolderDefault = "../../examples"
+	// Functional tests explicitly target the app_configuration_data example.
+	testConfigsExamplesFolderDefault = "../../examples/app_configuration_data"
 	infraTFVarFileNameDefault        = "test.tfvars"
 )
 

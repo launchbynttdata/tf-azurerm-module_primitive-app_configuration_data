@@ -16,6 +16,14 @@ import (
 )
 
 func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
+	testAppConfigurationData(t, ctx)
+}
+
+func TestComposableAppConfigurationData(t *testing.T, ctx types.TestContext) {
+	testAppConfigurationData(t, ctx)
+}
+
+func testAppConfigurationData(t *testing.T, ctx types.TestContext) {
 
 	subscriptionId := os.Getenv("ARM_SUBSCRIPTION_ID")
 

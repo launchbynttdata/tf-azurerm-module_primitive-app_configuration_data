@@ -19,7 +19,10 @@
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [azurerm_role_assignment.app_configuration_data_owner](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 
 ## Inputs
 

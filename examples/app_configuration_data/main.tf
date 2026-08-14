@@ -10,6 +10,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+data "azurerm_client_config" "current" {}
+
 module "resource_names" {
   source  = "terraform.registry.launch.nttdata.com/module_library/resource_name/launch"
   version = "~> 2.0"
@@ -49,6 +51,14 @@ module "app_configuration" {
   depends_on = [module.resource_group]
 }
 
+resource "azurerm_role_assignment" "app_configuration_data_owner" {
+  scope                = module.app_configuration.app_configuration_id
+  role_definition_name = "App Configuration Data Owner"
+  principal_id         = data.azurerm_client_config.current.object_id
+
+  skip_service_principal_aad_check = true
+}
+
 module "app_configuration_data" {
   source = "../../"
 
@@ -56,4 +66,6 @@ module "app_configuration_data" {
 
   keys     = var.keys
   features = var.features
+
+  depends_on = [azurerm_role_assignment.app_configuration_data_owner]
 }

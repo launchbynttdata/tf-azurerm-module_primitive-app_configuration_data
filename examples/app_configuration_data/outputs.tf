@@ -10,13 +10,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-terraform {
-  required_version = "~> 1.3"
+output "resource_group_name" {
+  description = "The name of the resource group containing the App Configuration store."
+  value       = module.resource_group.name
+}
 
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.117"
-    }
-  }
+output "app_configuration_name" {
+  description = "The name of the App Configuration store used by this example."
+  value       = module.app_configuration.app_configuration_name
 }

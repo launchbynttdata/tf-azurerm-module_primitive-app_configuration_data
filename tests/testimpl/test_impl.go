@@ -13,9 +13,18 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
+	testAppConfigurationData(t, ctx)
+}
+
+func TestComposableAppConfigurationData(t *testing.T, ctx types.TestContext) {
+	testAppConfigurationData(t, ctx)
+}
+
+func testAppConfigurationData(t *testing.T, ctx types.TestContext) {
 
 	subscriptionId := os.Getenv("ARM_SUBSCRIPTION_ID")
 
@@ -25,7 +34,7 @@ func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
 
 	cred, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
-		t.Fatalf("Unable to get credentials: %e\n", err)
+		t.Fatalf("Unable to get credentials: %v\n", err)
 	}
 
 	options := arm.ClientOptions{
@@ -47,6 +56,8 @@ func TestAppConfigurationData(t *testing.T, ctx types.TestContext) {
 		if err != nil {
 			t.Fatalf("failed to finish the request: %v", err)
 		}
-		assert.Equal(t, "Hello, World!", keyValue)
+		require.NotNil(t, keyValue.Properties)
+		require.NotNil(t, keyValue.Properties.Value)
+		assert.Equal(t, "Hello, World!", *keyValue.Properties.Value)
 	})
 }
